@@ -4,6 +4,9 @@ import { useMiniKit, useAddFrame, useOpenUrl, usePrimaryButton } from '@coinbase
 import { useEffect, useState } from 'react'
 import { ChatInterface } from './components/ChatInterface'
 import { MessageBubble } from './components/MessageBubble'
+import { Header } from './components/Header'
+import { MessageContainer } from './components/MessageContainer'
+import { EmptyState } from './components/EmptyState'
 
 interface ChatMessage {
   id: string
@@ -93,63 +96,69 @@ export default function TrollboxPrime() {
     console.log('Sharing:', shareText)
   }
 
+  const handleCopyMessage = () => {
+    console.log('Message copied to clipboard')
+  }
+
+  const handleReplyToMessage = () => {
+    console.log('Reply to message')
+  }
+
+  const pinnedCount = messages.filter(msg => msg.isPinned).length
+
   return (
     <div className="min-h-screen bg-bg">
       <div className="container mx-auto px-4 py-4 max-w-md">
-        {/* Header */}
-        <header className="flex justify-between items-center mb-4">
-          <div>
-            <h1 className="text-xl font-bold text-text">Trollbox Prime</h1>
-            <p className="text-sm text-muted">
-              {messages.length} messages • {isActive ? 'LIVE' : 'PAUSED'}
-            </p>
-          </div>
-          <div className="flex space-x-2">
-            {context && !context.client.added && (
-              <button
-                onClick={handleAddFrame}
-                className="bg-primary text-white px-3 py-1 rounded text-sm hover:bg-primary/90"
-              >
-                SAVE
-              </button>
-            )}
-            <button
-              onClick={handleShare}
-              className="bg-accent text-white px-3 py-1 rounded text-sm hover:bg-accent/90"
-            >
-              SHARE
-            </button>
-          </div>
-        </header>
+        {/* Enhanced Header */}
+        <Header
+          messageCount={messages.length}
+          isActive={isActive}
+          pinnedCount={pinnedCount}
+          onAddFrame={handleAddFrame}
+          onShare={handleShare}
+          showAddFrame={context && !context.client.added}
+        />
 
-        {/* Chat Messages */}
-        <div className="card mb-4 h-64 overflow-y-auto">
-          <div className="space-y-2">
-            {messages.map((message) => (
-              <MessageBubble
-                key={message.id}
-                message={message}
-                onPin={() => handlePinMessage(message.id)}
+        {/* Enhanced Chat Messages */}
+        <div className="card mb-4">
+          <MessageContainer messageCount={messages.length}>
+            {messages.length === 0 ? (
+              <EmptyState
+                title="Welcome to Trollbox Prime!"
+                description="The most chaotic place on Farcaster. Start the conversation!"
+                emoji="🎪"
               />
-            ))}
-          </div>
+            ) : (
+              messages.map((message) => (
+                <MessageBubble
+                  key={message.id}
+                  message={message}
+                  onPin={() => handlePinMessage(message.id)}
+                  onCopy={handleCopyMessage}
+                  onReply={handleReplyToMessage}
+                />
+              ))
+            )}
+          </MessageContainer>
         </div>
 
-        {/* Chat Input */}
+        {/* Enhanced Chat Input */}
         <ChatInterface
           value={newMessage}
           onChange={setNewMessage}
           onSend={handleSendMessage}
           disabled={!isActive}
+          maxLength={280}
         />
 
         {/* Footer */}
-        <footer className="mt-4 text-center">
+        <footer className="mt-6 text-center">
           <button
             onClick={() => openUrl('https://base.org')}
-            className="text-sm text-muted hover:text-accent transition-colors"
+            className="text-sm text-muted hover:text-accent transition-colors flex items-center justify-center space-x-1 mx-auto"
           >
-            BUILT ON BASE
+            <span>⚡</span>
+            <span>BUILT ON BASE</span>
           </button>
         </footer>
       </div>
