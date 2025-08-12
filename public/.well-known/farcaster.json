@@ -10,14 +10,14 @@
     "subtitle": "Built with Zara",
     "description": "Trollbox Prime is a Base Mini App built with Zara.",
     "iconUrl": "https://0co.to/images/zara-2.png",
-    "homeUrl": "https://b97a56bc-9a45-4aa8-862e-f7170f21bf85.vistara.dev",
-    "splashImageUrl": "https://dummyimage.com/200x200/0a0b0d/ffffff.png&text=Splash",
+    "homeUrl": "https://b97a56bc9a454aa8862ef7170f21bf85-vwpc-gti1bycj3-vistara.vercel.app",
+    "splashImageUrl": "https://b97a56bc9a454aa8862ef7170f21bf85-vwpc-gti1bycj3-vistara.vercel.app/splash.png",
     "splashBackgroundColor": "#000000",
-    "heroImageUrl": "https://dummyimage.com/1200x628/0a0b0d/ffffff.png&text=Hero",
+    "heroImageUrl": "https://b97a56bc9a454aa8862ef7170f21bf85-vwpc-gti1bycj3-vistara.vercel.app/image.png",
     "tagline": "Trollbox Prime",
     "screenshotUrls": [
-      "https://dummyimage.com/1200x628/0a0b0d/ffffff.png&text=Shot1",
-      "https://dummyimage.com/1200x628/0a0b0d/ffffff.png&text=Shot2"
+      "https://b97a56bc9a454aa8862ef7170f21bf85-vwpc-gti1bycj3-vistara.vercel.app/screenshot.png",
+      "https://b97a56bc9a454aa8862ef7170f21bf85-vwpc-gti1bycj3-vistara.vercel.app/screenshot.png"
     ],
     "primaryCategory": "social",
     "tags": [
@@ -25,6 +25,6 @@
       "miniapp",
       "onchainkit"
     ],
-    "webhookUrl": "https://b97a56bc-9a45-4aa8-862e-f7170f21bf85.vistara.dev/api/webhook"
+    "webhookUrl": "https://b97a56bc9a454aa8862ef7170f21bf85-vwpc-gti1bycj3-vistara.vercel.app/api/webhook"
   }
 }
